@@ -1,0 +1,112 @@
+I'll help you revise this to sound more like it was written by a college student. Here's a more casual, less polished version:
+
+# Deep Research AI Project
+My multi-agent system for web research using LangGraph & LangChain (for my CS490 final)
+
+## What This Does
+I built this AI research tool that:
+* Takes your questions and breaks them down
+* Searches the web using Tavily's API
+* Grabs content from relevant websites
+* Puts everything together into a decent answer
+* Double-checks itself for accuracy
+
+## How It Works
+I set up different agents to handle specific tasks:
+* A coordinator agent that manages everything
+* Research agents that gather info
+* Content processors that make sense of web pages
+* Answer generators that write up the findings
+* QA agents that make sure the answers aren't garbage
+
+## Setting It Up
+You'll need:
+* Python 3.8 or newer
+* API keys for OpenAI and Tavily
+
+### Installation Steps
+1. Clone my repo:
+```
+git clone https://github.com/yourusername/deep-research-agent.git
+cd deep-research-agent
+```
+
+2. Install the packages:
+```
+pip install langchain langchain-core langchain-openai langgraph python-dotenv
+pip install langchain-community tavily-python langchain-text-splitters
+pip install chromadb
+```
+
+3. Make a `.env` file with your keys:
+```
+OPENAI_API_KEY=your_openai_api_key_here
+TAVILY_API_KEY=your_tavily_api_key_here
+```
+
+## How to Use It
+Basic example:
+
+```python
+from deep_research import run_deep_research
+
+# Ask something
+result = run_deep_research("What are the environmental impacts of quantum computing?")
+
+# See what you got
+print(result)
+```
+
+Or make a file called `run.py`:
+
+```python
+from deep_research import run_deep_research
+
+# Whatever you want to research
+query = "What are the latest developments in quantum computing?"
+
+# Run it
+result = run_deep_research(query)
+
+# Check out the answer
+print("\n\n=== RESEARCH RESULTS ===\n\n")
+print(result)
+```
+
+Then just run:
+```
+python run.py
+```
+
+## What's Inside
+1. Query Agent - breaks down your questions
+2. Research Agents - search the web and grab content
+3. Content Processing - figures out what's important
+4. Answer Writing - puts everything together
+5. Quality Check - makes sure it's not totally wrong
+
+## Tweaking It
+You can mess with the settings in `deep_research.py`:
+* Change how many search results with `tavily_tool = TavilySearchResults(max_results=5)`
+* Use different LLMs with `research_llm = ChatOpenAI(model="gpt-4-turbo", temperature=0.2)`
+* Change how text gets chunked with `chunk_size` and `chunk_overlap`
+
+## When Things Break
+The system tries to handle common problems like:
+* Search API timeouts
+* Websites that won't load
+* Incomplete information
+
+## Future Improvements
+I'm thinking about adding:
+* Agents that can handle academic papers
+* Different search options
+* Custom setups for specific research types
+
+## License
+MIT License (basically do whatever you want with it)
+
+## Credits
+* Built this using LangChain and LangGraph
+* Search powered by Tavily
+* Used OpenAI's models for the smart stuff
